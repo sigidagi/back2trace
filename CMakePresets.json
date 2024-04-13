@@ -38,7 +38,7 @@
             }
         },
         {
-            "name": "host-debug",
+            "name": "cpm-debug",
             "inherits": ["clang-compiler", "debug"]
         }
     ]
