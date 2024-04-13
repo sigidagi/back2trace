@@ -1,0 +1,11 @@
+[requires]
+libdwarf/20191104
+libelf/0.8.13
+[options]
+libelf/*:shared=True
+libdwarf/*:shared=True
+[generators]
+CMakeDeps
+CMakeToolchain
+[layout]
+cmake_layout

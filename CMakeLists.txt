@@ -1,25 +1,23 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.19)
 
 project(unwindStack)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Don't use e.g. GNU extension (like -std=gnu++11) for portability
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-find_package(LibElf REQUIRED)
-find_package(LibDwarf REQUIRED)
-message(STATUS "libdwarf found: ${LIBDWARF_FOUND}")
-message(STATUS "libdwarf include dirs: ${LIBDWARF_INCLUDE_DIRS}")
-message(STATUS "libdwarf libraries: ${LIBDWARF_LIBRARIES}")
+find_package(libdwarf REQUIRED)
+find_package(libelf REQUIRED)
+message(STATUS "libdwarf found: ${libdwarf_FOUND}")
+message(STATUS "libdwarf include dirs: ${libdwarf_INCLUDE_DIRS}")
+message(STATUS "libdwarf libraries: ${libdwarf_LIBRARIES}")
 
-message(STATUS "libelf found: ${LIBELF_FOUND}")
-message(STATUS "libelf include dirs: ${LIBELF_INCLUDE_DIRS}")
-message(STATUS "libelf libraries: ${LIBELF_LIBRARIES}")
+message(STATUS "libelf found: ${libelf_FOUND}")
+message(STATUS "libelf include dirs: ${libelf_INCLUDE_DIRS}")
+message(STATUS "libelf libraries: ${libelf_LIBRARIES}")
 
 set(PROJECT_SOURCES
     main.cpp
@@ -29,7 +27,6 @@ set(PROJECT_SOURCES
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
-    ${LIBDWARF_LIBRARIES}
-    ${LIBELF_LIBRARIES}
+    libelf::libelf
+    libdwarf::libdwarf
 )
-

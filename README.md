@@ -1,6 +1,8 @@
 
 ```
-sudo apt install libdwarf-dev libelf-dev
-cmake --preset host-debug
-cmake --build build/host-debug -j8
+pipx install conan
+conan install . --build=missing --settings=build_type=Debug
+
+cmake --preset conan-debug
+cmake --build build/Debug -j8
 ```
